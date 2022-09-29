@@ -1,0 +1,11 @@
+[package]
+name = "categorize"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+savefile={ git = "https://github.com/avl/savefile", branch = "master" }
+savefile-derive={ git = "https://github.com/avl/savefile", branch = "master" }
+unidecode="*"
+fuzzywuzzy = "*"
+regex="*"
