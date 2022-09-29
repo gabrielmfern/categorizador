@@ -13,7 +13,7 @@ rodar o binário usando o nome de um produto. Após alguns segundos de procurand
 no vocabulário ele vai dizer a categoria que ele acha mais provável pra classificar seu produto
 dentre as categorias do Mercado Lívre juntamente com a confinça que ele acha que é esta categoria.
 
-Para rodar também vai precisar do `categorias.txt`, do `vocab.bin` e da pasta weights ao lado do binário.
+Para rodar também vai precisar do `vocab.bin` e da pasta weights ao lado do binário.
 
 Alguns exemploes do resultados da rede neural são:
 
