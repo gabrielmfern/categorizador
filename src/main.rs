@@ -3,6 +3,7 @@
 use std::collections::HashMap;
 
 use regex::Regex;
+use rayon::prelude::*;
 
 use fuzzywuzzy;
 use savefile::prelude::*;
@@ -56,7 +57,7 @@ fn find_most_similar_word_in_vocab(
     threshold: u8,
 ) -> Option<(usize, String, f32)> {
     let result = vocab
-        .iter()
+        .par_iter()
         .enumerate()
         .filter_map(|(vocab_index, vocab_token_word)| {
             let mut ratio = fuzzywuzzy::fuzz::ratio(word, &vocab_token_word);
@@ -72,13 +73,13 @@ fn find_most_similar_word_in_vocab(
                 Some((
                     vocab_index,
                     vocab_token_word.to_string(),
-                    ratio as f32 / 100f32,
+                    ratio as f32,
                 ))
             } else {
                 None
             }
         })
-        .fold((0, "".to_string(), 0f32), |largest, current| {
+        .reduce(|| (0usize, "".to_string(), 0f32), |largest, current| {
             if largest.2 < current.2 {
                 current.clone()
             } else {
@@ -88,7 +89,7 @@ fn find_most_similar_word_in_vocab(
     if result.1 == "" {
         None
     } else {
-        Some(result)
+        Some((result.0, result.1.to_string(), result.2 / 100f32))
     }
 }
 

@@ -8,4 +8,5 @@ savefile={ git = "https://github.com/avl/savefile", branch = "master" }
 savefile-derive={ git = "https://github.com/avl/savefile", branch = "master" }
 unidecode="*"
 fuzzywuzzy = "*"
+rayon = "*"
 regex="*"
